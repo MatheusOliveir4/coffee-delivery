@@ -1,10 +1,11 @@
 import CoffeeDeliveryPng from '../assets/coffee-delivery.png'
 import { ShoppingCart, Clock, Package, Coffee } from 'phosphor-react'
+import { Product } from '../components/Product'
 
 export function Home() {
   return (
-    <main className="container m-auto px-8 font-body">
-      <header className="flex items-center justify-between py-20">
+    <main className="container m-auto px-16 font-body">
+      <header className="flex items-center justify-between py-32">
         <div className="flex-1">
           <h1 className="text-4xl font-bold leading-normal">
             Encontre o café perfeito para qualquer hora do dia
@@ -52,7 +53,7 @@ export function Home() {
           </div>
         </div>
 
-        <div className="flex-1 flex justify-end">
+        <div className="hidden lg:flex flex-1 justify-end">
           <img
             width={476}
             height={360}
@@ -64,7 +65,30 @@ export function Home() {
 
       <section>
         <h1 className="text-2xl font-bold">Nossos cafés</h1>
+
+        <div className="grid justify-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 auto-rows-auto my-16">
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+        </div>
       </section>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </main>
   )
 }
