@@ -79,16 +79,6 @@ export function Home() {
           <Product />
         </div>
       </section>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </main>
   )
 }
