@@ -2,7 +2,7 @@ import { Bank, CreditCard, CurrencyDollar, MapPin, Money } from 'phosphor-react'
 
 export function PaymentForm() {
   return (
-    <section className="flex-1 max-w-[640px] space-y-4">
+    <section className="flex-1 lg:max-w-[640px] space-y-4">
       <strong className="text-lg">Complete seu pedido</strong>
 
       <div className="bg-gray-50 rounded-md p-8 space-y-10">

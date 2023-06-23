@@ -67,16 +67,11 @@ export function Home() {
         <h1 className="text-2xl font-bold">Nossos cafés</h1>
 
         <div className="grid justify-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 auto-rows-auto my-16">
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          <Product
+            title="Expresso Tradicional"
+            description="O tradicional café feito com água quente e grãos moídos"
+            price={9.9}
+          />
         </div>
       </section>
     </main>
