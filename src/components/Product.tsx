@@ -1,6 +1,9 @@
+import { useState } from 'react'
+
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 
 interface ProductProps {
+  id: number
   title: string
   description: string
   image: string
@@ -8,6 +11,22 @@ interface ProductProps {
 }
 
 export function Product({ title, description, image, price }: ProductProps) {
+  const [productAmount, setProductAmount] = useState(0)
+
+  function handleIncreaseProductAmount() {
+    setProductAmount((state) => state + 1)
+  }
+
+  function handleDecreaseProductAmount() {
+    setProductAmount((state) => {
+      if (state > 0) {
+        return state - 1
+      }
+
+      return state
+    })
+  }
+
   return (
     <div className="flex flex-col bg-gray-100 items-center px-6 pb-6 rounded-md rounded-tr-3xl rounded-bl-2xl w-64 ">
       <img className="w-30 -mt-6" src={image} alt="Imagem de um café" />
@@ -24,11 +43,19 @@ export function Product({ title, description, image, price }: ProductProps) {
         </strong>
 
         <div className="bg-gray-200 p-2 space-x-2 rounded flex items-center">
-          <button className="text-purple-700">
+          <button
+            onClick={handleDecreaseProductAmount}
+            className="text-purple-700"
+          >
             <Minus />
           </button>
-          <span>1</span>
-          <button className="text-purple-700">
+
+          <span>{productAmount}</span>
+
+          <button
+            onClick={handleIncreaseProductAmount}
+            className="text-purple-700"
+          >
             <Plus />
           </button>
         </div>

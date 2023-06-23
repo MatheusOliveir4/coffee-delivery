@@ -93,6 +93,7 @@ export function Home() {
           {products.map((product) => (
             <Product
               key={product.id}
+              id={product.id}
               title={product.title}
               image={product.image}
               description={product.description}
