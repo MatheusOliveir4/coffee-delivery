@@ -1,8 +1,31 @@
+import { useState, useEffect } from 'react'
+
 import CoffeeDeliveryPng from '../assets/coffee-delivery.png'
 import { ShoppingCart, Clock, Package, Coffee } from 'phosphor-react'
 import { Product } from '../components/Product'
 
+interface ProductData {
+  id: number
+  title: string
+  image: string
+  description: string
+  price: number
+}
+
 export function Home() {
+  const [products, setProducts] = useState<ProductData[]>([])
+
+  useEffect(() => {
+    async function fetchAPI() {
+      const response = await fetch('http://localhost:3000/products')
+      const data = await response.json()
+
+      setProducts(data)
+    }
+
+    fetchAPI()
+  }, [])
+
   return (
     <main className="container m-auto px-16 font-body">
       <header className="flex items-center justify-between py-32">
@@ -67,11 +90,15 @@ export function Home() {
         <h1 className="text-2xl font-bold">Nossos cafés</h1>
 
         <div className="grid justify-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 auto-rows-auto my-16">
-          <Product
-            title="Expresso Tradicional"
-            description="O tradicional café feito com água quente e grãos moídos"
-            price={9.9}
-          />
+          {products.map((product) => (
+            <Product
+              key={product.id}
+              title={product.title}
+              image={product.image}
+              description={product.description}
+              price={product.price}
+            />
+          ))}
         </div>
       </section>
     </main>

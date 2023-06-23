@@ -1,18 +1,16 @@
-import coffee from '../assets/coffee.svg'
-
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 
 interface ProductProps {
   title: string
   description: string
-  image?: string
+  image: string
   price: number
 }
 
 export function Product({ title, description, image, price }: ProductProps) {
   return (
     <div className="flex flex-col bg-gray-100 items-center px-6 pb-6 rounded-md rounded-tr-3xl rounded-bl-2xl w-64 ">
-      <img className="w-30 -mt-6" src={coffee} alt="Imagem de um café" />
+      <img className="w-30 -mt-6" src={image} alt="Imagem de um café" />
       <span className="mt-2 bg-orange-200 text-orange-600 py-0.5 px-3 text-xs font-bold rounded-full">
         Tradicional
       </span>

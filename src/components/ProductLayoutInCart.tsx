@@ -1,12 +1,10 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
 
-import coffeeProduct from '../assets/coffee.svg'
-
 export function ProductLayoutInCart() {
   return (
     <div className="flex justify-between py-8 border-b-2 border-gray-200">
       <div className="flex gap-4">
-        <img src={coffeeProduct} alt="" className="w-14" />
+        {/* <img src={coffeeProduct} alt="" className="w-14" /> */}
 
         <div className="flex flex-col justify-between gap-1">
           <strong className="font-normal">Expresso tradicional</strong>
