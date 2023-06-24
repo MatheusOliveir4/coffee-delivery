@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { useCartProducts } from '../hooks/useCartProducts'
+import { formatNumber } from '../utils/formatNumber'
 
 interface ProductProps {
   id: number
@@ -10,8 +12,29 @@ interface ProductProps {
   price: number
 }
 
-export function Product({ title, description, image, price }: ProductProps) {
+export function Product({
+  id,
+  title,
+  description,
+  image,
+  price,
+}: ProductProps) {
   const [productAmount, setProductAmount] = useState(0)
+
+  const { addProductToCart } = useCartProducts()
+
+  function handleAddProductToCart() {
+    const newProduct = {
+      id,
+      title,
+      description,
+      image,
+      price,
+      amount: productAmount,
+    }
+
+    addProductToCart(newProduct)
+  }
 
   function handleIncreaseProductAmount() {
     setProductAmount((state) => state + 1)
@@ -37,10 +60,7 @@ export function Product({ title, description, image, price }: ProductProps) {
       <p className="text-gray-500 text-sm text-center">{description}</p>
 
       <footer className="mt-8 w-full flex justify-between items-center">
-        <strong className=" text-xl">
-          <span className="text-sm inline-block mr-1">R$</span>
-          {price}
-        </strong>
+        <strong className=" text-xl">{formatNumber(price)}</strong>
 
         <div className="bg-gray-200 p-2 space-x-2 rounded flex items-center">
           <button
@@ -60,7 +80,10 @@ export function Product({ title, description, image, price }: ProductProps) {
           </button>
         </div>
 
-        <button className="bg-purple-800 text-white p-2 rounded">
+        <button
+          onClick={handleAddProductToCart}
+          className="bg-purple-800 text-white p-2 rounded"
+        >
           <ShoppingCart size={24} weight="fill" />
         </button>
       </footer>
