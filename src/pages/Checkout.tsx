@@ -11,11 +11,11 @@ export function Checkout() {
         pt-32
         font-body
         flex
-        flex-wrap-reverse 
-        lg:flex-nowrap 
+        flex-col-reverse
         items-start 
         justify-between 
         gap-8
+        lg:flex-row
       "
     >
       <PaymentForm />

@@ -1,6 +1,16 @@
 import { Bank, CreditCard, CurrencyDollar, MapPin, Money } from 'phosphor-react'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 export function PaymentForm() {
+  const [activePaymentFormat, setActivePaymentFormat] = useState('')
+  const { register, handleSubmit } = useForm()
+
+  function handleCreateDeliveryAddress(data: any) {
+    console.log(data)
+    console.log(activePaymentFormat)
+  }
+
   return (
     <section className="flex-1 lg:max-w-[640px] space-y-4">
       <strong className="text-lg">Complete seu pedido</strong>
@@ -16,41 +26,53 @@ export function PaymentForm() {
           </div>
         </header>
 
-        <form action="" className="grid grid-cols-8 gap-4">
+        <form
+          action=""
+          id="delivery-address-form"
+          onSubmit={handleSubmit(handleCreateDeliveryAddress)}
+          className="grid grid-cols-8 gap-4"
+        >
           <input
             className="p-2 bg-gray-100 border border-gray-200 text-sm outline-none placeholder:text-gray-500 rounded col-span-3"
             type="text"
             placeholder="CEP"
+            {...register('cep')}
           />
           <input
             className="p-2 bg-gray-100 border border-gray-200 text-sm outline-none placeholder:text-gray-500 rounded col-span-8"
             type="text"
             placeholder="Rua"
+            {...register('street')}
           />
           <input
             className="p-2 bg-gray-100 border border-gray-200 text-sm outline-none placeholder:text-gray-500 rounded col-span-3"
             type="text"
             placeholder="Número"
+            {...register('number')}
           />
           <input
             className="p-2 bg-gray-100 border border-gray-200 text-sm outline-none placeholder:text-gray-500 rounded col-span-5"
             type="text"
             placeholder="Complemento"
+            {...register('complement')}
           />
           <input
             className="p-2 bg-gray-100 border border-gray-200 text-sm outline-none placeholder:text-gray-500 rounded col-span-3"
             type="text"
             placeholder="Bairro"
+            {...register('neighborhood')}
           />
           <input
             className="p-2 bg-gray-100 border border-gray-200 text-sm outline-none placeholder:text-gray-500 rounded col-span-4"
             type="text"
             placeholder="Cidade"
+            {...register('city')}
           />
           <input
             className="p-2 bg-gray-100 border border-gray-200 text-sm outline-none placeholder:text-gray-500 rounded "
             type="text"
             placeholder="UF"
+            {...register('uf')}
           />
         </form>
       </div>
@@ -67,20 +89,35 @@ export function PaymentForm() {
             </div>
           </div>
 
-          <div className="flex justify-between">
-            <button className="text-xs uppercase p-4 rounded bg-gray-200 text-gray-600 flex items-center gap-2">
-              <CreditCard size={22} className="text-purple-600" />
+          <div className="grid lg:grid-cols-3 gap-4 text-xs uppercase  text-gray-600">
+            <button
+              onClick={() => setActivePaymentFormat('credit')}
+              className={`p-4 rounded flex items-center gap-2 bg-gray-200 ${
+                activePaymentFormat === 'credit' && 'bg-purple-200'
+              }`}
+            >
+              <CreditCard size={22} className={` text-purple-600`} />
               Cartão de crédito
             </button>
 
-            <button className="text-xs uppercase p-4 rounded bg-gray-200 text-gray-600 flex items-center gap-2">
+            <button
+              onClick={() => setActivePaymentFormat('debit')}
+              className={`p-4 rounded flex items-center gap-2 bg-gray-200 ${
+                activePaymentFormat === 'debit' && 'bg-purple-200'
+              }`}
+            >
               <Bank size={22} className="text-purple-600" />
-              Cartão de crédito
+              Cartão de débito
             </button>
 
-            <button className="text-xs uppercase p-4 rounded bg-gray-200 text-gray-600 flex items-center gap-2">
+            <button
+              onClick={() => setActivePaymentFormat('cash')}
+              className={`p-4 rounded flex items-center gap-2 bg-gray-200 ${
+                activePaymentFormat === 'cash' && 'bg-purple-200'
+              }`}
+            >
               <Money size={22} className="text-purple-600" />
-              Cartão de crédito
+              Dinheiro
             </button>
           </div>
         </div>
